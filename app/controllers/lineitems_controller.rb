@@ -32,9 +32,11 @@ class LineitemsController < ApplicationController
 
     respond_to do |format|
       if @lineitem.save
+
         format.html { redirect_to shopper_url}
-        format.js
-        format.json { render :show, status: :created, location: @lineitem }
+        #format.js
+          format.json { render :show, status: :created, location: @lineitem }
+      
       else
         format.html { render :new }
         format.json { render json: @lineitem.errors, status: :unprocessable_entity }

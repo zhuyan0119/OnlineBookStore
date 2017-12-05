@@ -12,23 +12,39 @@
 	<%= image_tag("logo.png", :size => "40x50") %>
 	<%= @page_title || "Our Products" %>
 </div>
+
 <div id="columns">
 <div id="side">
+
+	<%= form_tag(products_path) do %>
+  		<%= text_field_tag :term %>
+  		<%= submit_tag 'Search' %>
+	<% end %>
 
 	<div id=“cart">
 		<%= render (@cart) %>
 	</div>
 
 <ul>
-<li><a href="http://www....">Home</a></li>
-<li><a href="http://www..../faq">Questions</a></li>
-<li><a href="http://www..../news">News</a></li>
+<li><%= link_to 'Home', shopper_path %></li>
+<li><a href = /users/new >new user</a></li>
+<li><a href= /login>login</a></li>
 <li><a href="http://www..../contact">Contact</a></li>
 </ul>
 
-</div>
+<% if session[:user_id] %>
+	<ul>
+		<li><%= link_to 'Orders', orders_path %></li>
+		<li><%= link_to 'Products', products_path %></li>
+		<li><%= link_to 'Users', users_path %></li>
+	</ul>
+	<%= button_to 'logout', logout_path, method: :delete %>
+<% end %>
+
+
+	</div>
 <div id="main">
-<%= yield %>
+	<%= yield %>
 </div>
 </div>
 </body>
